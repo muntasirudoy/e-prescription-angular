@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "soowgood-v2": {
+    "prescriba-v2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -82,10 +82,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "soowgood-v2:build:production"
+              "buildTarget": "prescriba-v2:build:production"
             },
             "development": {
-              "buildTarget": "soowgood-v2:build:development"
+              "buildTarget": "prescriba-v2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "soowgood-v2:build"
+            "buildTarget": "prescriba-v2:build"
           }
         },
         "test": {
@@ -117,3 +117,4 @@
     "analytics": "36d14921-83bb-4812-8dea-e78ace704267"
   }
 }
+

@@ -1230,10 +1230,10 @@ const DoctorInfo: React.FC<DoctorInfoProps> = ({ doctor, isPreHand, isHeader }) 
         ) : (
           <div>
             <p className="text-secondary font-semibold text-right text-lg">
-              Soowgood Online
+              Prescriba Online
             </p>
             <p className="text-gray-500 text-right text-sm">+880 1605-144633</p>
-            <p className="text-gray-500 text-right text-sm">info@soowgood.com</p>
+            <p className="text-gray-500 text-right text-sm">info@prescriba.com</p>
           </div>
         )}
         {doctor.schedule && doctor.schedule.length > 0 && (
@@ -1679,4 +1679,6 @@ const DynamicModal: React.FC<DynamicModalProps> = ({ type, title, items, onClose
     </div>
   );
 };
+
+
 

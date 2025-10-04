@@ -1,5 +1,5 @@
 {
-  "name": "soowgood-v2",
+  "name": "prescriba-v2",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -81,3 +81,4 @@
     "util": false
   }
 }
+
