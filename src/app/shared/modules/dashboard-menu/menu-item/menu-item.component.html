@@ -1,10 +1,6 @@
-<a
-  [routerLink]="href"
-  class="sidebar-item group"
-  [class.sidebar-item--active]="active"
-  [class.sidebar-item--compact]="collapsed"
->
-  <span class="sidebar-item__icon" [innerHTML]="iconSvg"></span>
-  <span class="sidebar-item__label full-only">{{ label }}</span>
-  <span *ngIf="count !== undefined" class="sidebar-item__badge full-only">{{ count }}</span>
+<a [routerLink]="href" class="sidebar-item flex items-center gap-3 p-3 " [class.sidebar-item--active]="active"
+  [class.sidebar-item--compact]="collapsed">
+  <span class="" [innerHTML]="iconSvg"></span>
+  <span class="full-only">{{ label }}</span>
+  <span *ngIf="count !== undefined" class=" full-only">{{ count }}</span>
 </a>

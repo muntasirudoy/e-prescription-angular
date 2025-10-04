@@ -1,65 +1,66 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import(''tailwindcss'').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+
+const brandPalette = {
+  primary: "#f97316",
+  primaryAccent: "#fb923c",
+  highlight: "#fbbf24",
+  surface: "#fef6f4",
+  surfaceSoft: "#fde7e3",
+  surfaceStrong: "#f8d0d2",
+  neutral: "#374151",
+  neutralSoft: "#6B7280",
+  border: "#e0e0e0",
+  white: "#ffffff",
+};
+
+const brandGradients = {
+  panel: `linear-gradient(180deg, ${brandPalette.surface} 0%, ${brandPalette.surfaceSoft} 45%, ${brandPalette.surfaceStrong} 100%)`,
+  badge: `linear-gradient(135deg, ${brandPalette.primary} 0%, ${brandPalette.primaryAccent} 100%)`,
+  highlight: `linear-gradient(135deg, ${brandPalette.highlight} 0%, ${brandPalette.primaryAccent} 100%)`,
+};
+
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     screens: {
       "2xs": "320px",
-      // min 320 max 575px
       xs: "460px",
-
       sm: "576px",
-      // => @media (min-width: 576px max 767px) { ... }
-
       md: "768px",
-      // => @media (min-width: 768px max 991px) { ... }
-
       lg: "992px",
-      // => @media (min-width: 992px max 1239px) { ... }
-
       xl: "1240px",
-      // => @media (min-width: 1240px 1535px) { ... }
-
       "2xl": "1536px",
-
       "3xl": "1836px",
-
       "4xl": "2060px",
-
-      // => @media (min-width: 1536px) { ... }
     },
-
     extend: {
+      colors: {
+        brand: {
+          ...brandPalette,
+        },
+        primary: brandPalette.primary,
+        "primary-light": `${brandPalette.primary}20`,
+        secondary: brandPalette.highlight,
+        "secondary-light": brandPalette.surface,
+        "secondary-dark": brandPalette.primaryAccent,
+        "secondary-border": `${brandPalette.primary}40`,
+        label: "rgba(55, 65, 81, 0.65)",
+      },
       backgroundImage: {
+        "brand-panel": brandGradients.panel,
+        "brand-badge": brandGradients.badge,
+        "brand-highlight": brandGradients.highlight,
+        "brand-glow": brandGradients.glow,
         "hero-pattern": "url(/assets/banner/bg-shape.webp)",
-        // 'auth-pattern' :"url('/assets/')
+      },
+      boxShadow: {
+        "brand-card": "0 32px 80px rgba(244, 163, 181, 0.45)",
+        "brand-soft": "0 16px 30px rgba(249, 191, 60, 0.25)",
       },
       gridTemplateColumns: {
         "auto-fill-100": "repeat(auto-fill, minmax(160px, 1fr))",
         "auto-fit-100": "repeat(auto-fit, minmax(100px, 1fr))",
-      },
-      boxShadow: {
-        soft: "rgba(0, 0, 0, 0.06) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
-        high: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
-        bottom:
-          "rgba(0, 0, 0, 0.09) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px",
-        blue: "rgba(84, 87, 172, 0.2) 0px 7px 29px 0px",
-      },
-      colors: {
-        primary: "#f4c1c8",
-        "primary-light": "#f4c1c820",
-        secondary: "#fbbf24",
-        "secondary-light": "#fde68a",
-        "secondary-dark": "#f97316",
-        "secondary-border": "#f4c1c840",
-        label: "rgba(0, 0, 0, 0.6)",
-        skyblue: "#fbbf24",
-
-        gray: {
-          100: "#f7fafc",
-          // ...
-          900: "#1a202c",
-        },
       },
       fontFamily: {
         poppinsLight: ["Poppins-Light", "sans-serif"],
@@ -71,8 +72,28 @@ module.exports = {
       },
     },
   },
-
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    ({ addBase }) => {
+      addBase({
+        ":root": {
+          "--brand-primary": brandPalette.primary,
+          "--brand-primary-accent": brandPalette.primaryAccent,
+          "--brand-highlight": brandPalette.highlight,
+          "--brand-surface": brandPalette.surface,
+          "--brand-surface-soft": brandPalette.surfaceSoft,
+          "--brand-surface-strong": brandPalette.surfaceStrong,
+          "--brand-neutral": brandPalette.neutral,
+          "--brand-neutral-soft": brandPalette.neutralSoft,
+          "--brand-border": brandPalette.border,
+          "--brand-white": brandPalette.white,
+          "--gradient-brand-panel": brandGradients.panel,
+          "--gradient-brand-badge": brandGradients.badge,
+          "--gradient-brand-highlight": brandGradients.highlight,
+          "--gradient-brand-glow": brandGradients.glow,
+          "--shadow-brand-card": "0 32px 80px rgba(244, 163, 181, 0.45)",
+        },
+      });
+    },
+  ],
 };
-
-

@@ -4,7 +4,6 @@
 // @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap');
 
-
 @font-face {
   font-family: 'Roboto-Light';
   src: url('/assets/fonts/Roboto/Roboto-Light.ttf');
@@ -53,43 +52,36 @@
   font-display: swap;
 }
 
-
 :host {
-  background: linear-gradient(180deg, #fef6f4 0%, #fde7e3 45%, #f8d0d2 100%);
-  color: #374151;
+  background: var(--gradient-brand-panel);
+  color: var(--brand-neutral);
 }
 
 body {
   scroll-behavior: smooth;
-  background: #fff8f5;
+  background: var(--brand-surface);
+  color: var(--brand-neutral);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light;
-    color: #374151;
+    color: var(--brand-neutral);
   }
 }
 
 @layer utilities {
   @variants responsive {
-
-    /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
 
-    /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
       -ms-overflow-style: none;
-      /* IE and Edge */
       scrollbar-width: none;
-      /* Firefox */
     }
   }
 }
-
-
 
 body::-webkit-scrollbar {
   width: 7px;
@@ -100,7 +92,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #fbbf24;
+  background-color: var(--brand-highlight);
   outline: none;
   border-radius: 5px;
 }
@@ -111,7 +103,6 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 1;
-  /* Number of lines to show */
 }
 
 @layer components {
@@ -128,27 +119,27 @@ body::-webkit-scrollbar-thumb {
   }
 
   .btn-prescription {
-    @apply active:scale-95 duration-150 flex items-center gap-1 rounded-lg py-2 px-4 font-Roboto shadow-lg bg-white text-slate-900 border-primary/30 border-[1px];
+    @apply active:scale-95 duration-150 flex items-center gap-1 rounded-lg py-2 px-4 font-Roboto shadow-lg bg-white text-brand-neutral border border-brand-border;
   }
 
   .btn-primary {
-    @apply whitespace-nowrap flex items-center disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed disabled:select-none disabled:pointer-events-none cursor-pointer rounded-md active:scale-90 transition-all duration-75 h-fit text-white font-poppins text-sm px-5 py-2 text-center bg-secondary hover:bg-secondary-dark;
+    @apply whitespace-nowrap flex items-center disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:select-none rounded-md active:scale-90 transition-all duration-75 h-fit text-white font-poppins text-sm px-5 py-2 text-center bg-secondary hover:bg-secondary-dark;
   }
 
   .form_btn {
-    @apply active:scale-90 transition-all duration-75 w-full py-3 font-medium text-slate-900 bg-primary hover:bg-skyblue rounded-lg border-primary hover:shadow inline-flex space-x-2 items-center justify-center;
+    @apply active:scale-90 transition-all duration-75 w-full py-3 font-medium text-brand-neutral bg-primary hover:bg-secondary text-brand-neutral rounded-lg border border-brand-border hover:shadow inline-flex space-x-2 items-center justify-center;
   }
 
   .btn-secondary {
-    @apply whitespace-nowrap md:text-[16px] font-poppins disabled:hover:text-gray-400 py-1 sm:py-2 px-4 md:px-6 active:scale-90 disabled:scale-100 disabled:bg-gray-200 disabled:border-none disabled:shadow-none disabled:text-gray-400 disabled:select-none transition-all duration-75 hover:text-slate-900 border border-transparent hover:border hover:border-secondary-border flex items-center justify-center text-center relative text-sm bg-secondary hover:bg-secondary-light hover:border-secondary-dark text-white font-medium rounded-[5px] md:rounded-md shadow-lg hover:shadow-none hover:opacity-75;
+    @apply whitespace-nowrap md:text-[16px] font-poppins disabled:hover:text-gray-400 py-1 sm:py-2 px-4 md:px-6 active:scale-90 disabled:scale-100 disabled:bg-gray-200 disabled:border-none disabled:shadow-none disabled:text-gray-400 disabled:select-none transition-all duration-75 hover:text-brand-neutral border border-transparent hover:border hover:border-secondary-border flex items-center justify-center text-center relative text-sm bg-secondary hover:bg-secondary-light hover:border-secondary-dark text-white font-medium rounded-[5px] md:rounded-md shadow-lg hover:shadow-none hover:opacity-75;
   }
 
   .btn-secondary-light {
-    @apply font-poppins active:scale-90 border-secondary-dark/30 border-[1px] py-1.5 md:py-2 transition-all duration-75 bg-secondary-light text-slate-900 hover:text-slate-900 px-5 mr-2 h-fit text-sm font-medium focus:outline-none rounded-md;
+    @apply font-poppins active:scale-90 border-secondary-dark/30 border-[1px] py-1.5 md:py-2 transition-all duration-75 bg-secondary-light text-brand-neutral hover:text-brand-neutral px-5 mr-2 h-fit text-sm font-medium focus:outline-none rounded-md;
   }
 
   .signup-form {
-    @apply flex items-center w-full h-screen bg-slate-100;
+    @apply flex items-center w-full h-screen bg-brand-surface;
   }
 
   .signup-form__right {
@@ -160,11 +151,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .signup-form__choose {
-    @apply flex justify-end items-center pr-5 relative overflow-hidden w-1/2 h-14 border-[1px] shadow-[0_5px_30px_0_rgba(31, 34, 120, .08)] rounded-md;
+    @apply flex justify-end items-center pr-5 relative overflow-hidden w-1/2 h-14 border border-brand-border shadow-[0_5px_30px_0_rgba(31, 34, 120, .08)] rounded-md;
   }
 
   .form_input {
-    @apply w-full rounded-md border border-[#e0e0e0] bg-white py-1.5 md:py-2 px-3 text-base font-normal text-[14px] text-[#6B7280] outline-none focus:border-secondary focus:shadow-md;
+    @apply w-full rounded-md border border-brand-border bg-white py-1.5 md:py-2 px-3 text-base font-normal text-[14px] text-brand-neutral outline-none focus:border-secondary focus:shadow-md;
   }
 
   .dashbord-heading-text {
@@ -202,9 +193,14 @@ body::-webkit-scrollbar-thumb {
   .label {
     @apply block font-medium text-[14px] text-[#07074D];
   }
-
 }
 
+.btn-three {
+  color: var(--brand-primary);
+  transition: all 0.5s;
+  position: relative;
+  background: var(--brand-surface);
+}
 
 .btn-three::before {
   content: '';
@@ -251,7 +247,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #fbbf24;
+  background-color: var(--brand-highlight);
   outline: none;
   border-radius: 5px;
 }
@@ -261,7 +257,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 input[type="number"] {
   -moz-appearance: textfield;

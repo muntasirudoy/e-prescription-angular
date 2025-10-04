@@ -1,39 +1,7 @@
-<!-- <div class="main_right border-l-[1px] border-box -z-10 bg-white">
-  <div class="box-border">
-    <div class="card w-full bg-white border-none border-b-[1px]">
-      <figure class="px-10 lg:pt-10 pt-5">
-        <img [src]="url || '../../../../assets/patients/patient.png'" alt="profile"
-          class="rounded-full w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] object-cover border-2 border-secondary" />
-      </figure>
-      <div class="card-body p-4 pb-2 lg:pb-3 items-center text-center rounded-none border-none">
-        <span class="py-.5 px-4 bg-sky-300/30 text-slate-900 font-Roboto text-[12px] font-semibold">
-          {{ profileTile }}
-        </span>
-        <h2 class="card-title text-[18px] lg:text-[20px] text-slate-900">
-          {{ userInfo?.fullName }}
-        </h2>
-        <p class="text-slate-900">{{ userInfo?.designation }}</p>
-
-        <div *ngIf="authInfo.userType == 'doctor'">
-          <label class="relative inline-flex items-center mb-3 lg:mb-5 cursor-pointer">
-            <input [style]="isProfileLoad ? 'display:none' : 'display:block'" type="checkbox" [value]="status"
-              [(ngModel)]="status" (change)="onChangeStatus()" name="status" class="sr-only peer" />
-            <div
-              class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-secondary rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-400">
-            </div>
-            <span class="ms-3 text-sm font-medium text-green-700" *ngIf="status">Online</span>
-            <span class="ms-3 text-sm font-medium text-gray-900" *ngIf="!status">Offline</span>
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-<!-- ----- -->
-<div class="flex flex-col items-center border-b py-5 px-4">
+<div class="flex gap-3 !border-b-orange-400  px-4">
   <div class="relative">
-    <div
-      class="relative overflow-hidden h-16 w-16 mb-4 rounded-full border-2 border-cyan-100 bg-cyan-50 flex items-center justify-center text-cyan-700 text-xl font-semibold">
+    <div class="relative overflow-hidden h-14 w-14 rounded-full !border-2 border-cyan-100 bg-cyan-50 flex 
+      items-center justify-center text-cyan-700 text-xl font-semibold">
       <img [src]="url || '../../../../assets/patients/patient.png'" alt="pp">
     </div>
     <div class="absolute right-2 top-1" *ngIf="status && authInfo.userType =='doctor'">
@@ -50,22 +18,7 @@
     </div>
   </div>
 
-  <div class="full-only text-center w-full flex flex-col items-center">
-    <div class="mb-1 px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-600 rounded-full w-fit capitalize"> {{
-      profileTile }}
-    </div>
-    <div class="mb-2 text-center font-semibold"> {{ userInfo?.fullName ?? userInfo.patientName }}</div>
-    <div class="flex items-center gap-1.5">
 
-      <div *ngIf="authInfo.userType == 'doctor'">
-        <label class="relative inline-flex items-center cursor-pointer">
-          <input [style]="isProfileLoad ? 'display:none' : 'display:block'" type="checkbox" [value]="status"
-            [(ngModel)]="status" (change)="onChangeStatus()" name="status" class="sr-only peer" />
-          <div
-            class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-400">
-          </div>
-        </label>
-      </div>
-    </div>
-  </div>
+  <div class=" font-semibold"> {{ userInfo?.fullName ?? userInfo.patientName }}</div>
+
 </div>
