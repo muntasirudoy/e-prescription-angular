@@ -160,7 +160,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .signup-form__choose {
-    @apply flex justify-end items-center pr-5 relative overflow-hidden w-1/2 h-14 border-[1px] shadow-[0_5px_30px_0_rgba(31,34,120,.08)] rounded-md;
+    @apply flex justify-end items-center pr-5 relative overflow-hidden w-1/2 h-14 border-[1px] shadow-[0_5px_30px_0_rgba(31, 34, 120, .08)] rounded-md;
   }
 
   .form_input {
@@ -203,11 +203,8 @@ body::-webkit-scrollbar-thumb {
     @apply block font-medium text-[14px] text-[#07074D];
   }
 
-  .section-spacing {
-    @apply flex items-center py-5 md:py-10 lg:py-14;
-  }
 }
-}
+
 
 .btn-three::before {
   content: '';
@@ -269,4 +266,3 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-

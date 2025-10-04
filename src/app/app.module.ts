@@ -15,35 +15,16 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
-import { EmptyPageComponent } from './features-modules/public/empty-page/empty-page.component';
-import { PaymentCancelComponent } from './features-modules/public/payment-cancel/payment-cancel.component';
-import { PaymentFaildComponent } from './features-modules/public/payment-faild/payment-faild.component';
-import { PaymentSuccessComponent } from './features-modules/public/payment-success/payment-success.component';
-// import { SplashComponent } from './shared/components/splash/splash.component';
-import { LoaderModule } from './shared/modules/loader/loader.module';
-import { MaterialModulesModule } from './shared/modules/material-modules/material-modules.module';
-import { AuthInterceptor } from './helper/auth.interceptor';
-import { RouterModule } from '@angular/router';
+
 import {
   FullscreenOverlayContainer,
   OverlayContainer,
 } from '@angular/cdk/overlay';
-import { PoliceSoowgoodComponent } from './police.soowgood/police.soowgood.component';
-
-// const routerConfig: ExtraOptions = {
-//   scrollPositionRestoration: 'enabled',
-//   preloadingStrategy: PreloadAllModules,
-// };
+import { AuthInterceptor } from './helper/auth.interceptor';
+import { MaterialModulesModule } from './shared/modules/material-modules/material-modules.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EmptyPageComponent,
-    PaymentSuccessComponent,
-    PaymentFaildComponent,
-    PaymentCancelComponent,
-    // SplashComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     MatNativeDateModule,
@@ -56,17 +37,13 @@ import { PoliceSoowgoodComponent } from './police.soowgood/police.soowgood.compo
     }),
     BrowserAnimationsModule,
     MaterialModulesModule,
-
     AppRouting,
-
     HotToastModule.forRoot({
       position: 'bottom-right',
     }),
-    LoaderModule,
     MatSidenavModule,
     ReactiveFormsModule,
     FormsModule,
-
     AbpOAuthModule.forRoot(),
   ],
   providers: [
@@ -79,11 +56,6 @@ import { PoliceSoowgoodComponent } from './police.soowgood/police.soowgood.compo
     { provide: OverlayContainer, useClass: FullscreenOverlayContainer }, // Override default OverlayContainer
   ],
   bootstrap: [AppComponent],
-  exports: [
-    MatDialogModule,
-    ReactiveFormsModule,
-    FormsModule,
-    //, PaginatorComponent
-  ],
+  exports: [MatDialogModule, ReactiveFormsModule, FormsModule],
 })
 export class AppModule {}

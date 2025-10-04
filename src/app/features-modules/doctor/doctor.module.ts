@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Route, RouterModule } from '@angular/router';
 import { DashboardMenuModule } from 'src/app/shared/modules/dashboard-menu/dashboard-menu.module';
-import { DashboardHeaderModule } from './../../shared/modules/dashboard-header/dashboard-header.module';
 import { DoctorComponent } from './doctor.component';
 import { DoctorsPrescriptionsComponent } from './doctors-prescriptions/doctors-prescriptions.component';
 import { PrescribeComponent } from './prescribe/prescribe.component';
+import { isAuth } from 'src/app/auth-gurd/auth.service';
 
 const routes: Route[] = [
   {
@@ -21,49 +21,44 @@ const routes: Route[] = [
       },
       {
         path: 'dashboard',
+        canActivate: [isAuth],
         loadChildren: () =>
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
-      {
-        path: 'appointments',
-        loadChildren: () =>
-          import('./appointments/appointments.module').then(
-            (m) => m.AppointmentsModule
-          ),
-      },
-      {
-        path: 'patients',
-        loadChildren: () =>
-          import('./my-patients/my-patients.module').then(
-            (m) => m.MyPatientsModule
-          ),
-      },
-      {
-        path: 'hospital-schedule',
-        loadChildren: () =>
-          import('./hospital-schedule/hospital-schedule.module').then(
-            (m) => m.HospitalScheduleModule
-          ),
-      },
-      {
-        path: 'billing',
-        loadChildren: () =>
-          import('./billing/billing.module').then((m) => m.BillingModule),
-      },
-      {
-        path: 'profile-settings',
-        loadChildren: () =>
-          import('./profile-settings/profile-settings.module').then(
-            (m) => m.ProfileSettingsModule
-          ),
-      },
-      {
-        path: 'video-consultation',
-        loadChildren: () =>
-          import('./video-consultation/video-consultation.module').then(
-            (m) => m.VideoConsultationModule
-          ),
-      },
+
+      // {
+      //   path: 'patients',
+      //   loadChildren: () =>
+      //     import('./my-patients/my-patients.module').then(
+      //       (m) => m.MyPatientsModule
+      //     ),
+      // },
+      // {
+      //   path: 'hospital-schedule',
+      //   loadChildren: () =>
+      //     import('./hospital-schedule/hospital-schedule.module').then(
+      //       (m) => m.HospitalScheduleModule
+      //     ),
+      // },
+      // {
+      //   path: 'billing',
+      //   loadChildren: () =>
+      //     import('./billing/billing.module').then((m) => m.BillingModule),
+      // },
+      // {
+      //   path: 'profile-settings',
+      //   loadChildren: () =>
+      //     import('./profile-settings/profile-settings.module').then(
+      //       (m) => m.ProfileSettingsModule
+      //     ),
+      // },
+      // {
+      //   path: 'video-consultation',
+      //   loadChildren: () =>
+      //     import('./video-consultation/video-consultation.module').then(
+      //       (m) => m.VideoConsultationModule
+      //     ),
+      // },
       {
         path: 'build-prescription',
         component: PrescribeComponent,
@@ -79,7 +74,6 @@ const routes: Route[] = [
 @NgModule({
   declarations: [DoctorComponent],
   imports: [
-    DashboardHeaderModule,
     CommonModule,
     DashboardMenuModule,
     MatSidenavModule,

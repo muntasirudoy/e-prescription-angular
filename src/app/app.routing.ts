@@ -1,51 +1,24 @@
 import { NgModule } from '@angular/core';
-import {
-  ExtraOptions,
-  PreloadAllModules,
-  Route,
-  RouterModule,
-} from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { routerGuard } from './auth-gurd/router.guard';
 import { LoginComponent } from './core-modules/auth/login/login.component';
-
-import { PoliceSoowgoodComponent } from './police.soowgood/police.soowgood.component';
-import { DoctorLayoutComponent } from './layout-module/layouts/doctor-layout/doctor-layout.component';
+import { DoctorLayoutComponent } from './layout-module/doctor-layout.component';
+import { isAuth } from './auth-gurd/auth.service';
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    component: DoctorLayoutComponent,
-    // loadChildren: () =>
-    //   import('./features-modules/public/landing-page/landing-page.module').then(
-    //     (m) => m.LandingPageModule
-    //   ),
+    loadChildren: () =>
+      import('../app/features-modules/doctor/doctor.module').then(
+        (m) => m.DoctorModule
+      ),
   },
-
   {
     path: 'login',
     canActivate: [routerGuard],
     component: LoginComponent,
   },
 
-  {
-    path: 'police',
-    component: PoliceSoowgoodComponent,
-  },
-
-  {
-    path: 'auth-checking',
-    loadChildren: () =>
-      import('./core-modules/auth/auth-checking/auth-checking.module').then(
-        (m) => m.AuthCheckingModule
-      ),
-  },
-  {
-    path: 'service-login',
-    loadChildren: () =>
-      import('./core-modules/auth/service-login/service-login.module').then(
-        (m) => m.ServiceLoginModule
-      ),
-  },
   {
     path: 'signup',
     //canActivate:[routerGuard],
@@ -56,20 +29,19 @@ export const appRoutes: Route[] = [
     // component: SignupComponent,
   },
   {
-    path: 'agent/signup',
-    canActivate: [routerGuard],
-    loadChildren: () =>
-      import('./core-modules/auth/agent/agent-signup/agent-signup.module').then(
-        (m) => m.AgentSignupModule
-      ),
-  },
-  {
-    path: 'agent/login',
-    canActivate: [routerGuard],
-    loadChildren: () =>
-      import('./core-modules/auth/agent/agent-login/agent-login.module').then(
-        (m) => m.AgentLoginModule
-      ),
+    path: 'doctor',
+    canActivate: [isAuth],
+    data: { breadcrumb: 'Doctor' },
+    component: DoctorLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('../app/features-modules/doctor/doctor.module').then(
+            (m) => m.DoctorModule
+          ),
+      },
+    ],
   },
   // {
   //   path: '**',
@@ -86,6 +58,7 @@ export const appRoutes: Route[] = [
       anchorScrolling: 'enabled',
       scrollOffset: [0, 64],
     }),
+    DoctorLayoutComponent,
   ],
   exports: [RouterModule],
 })
