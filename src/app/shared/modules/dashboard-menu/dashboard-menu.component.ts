@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-menu',
-  templateUrl: './dashboard-menu.component.html',
-  styleUrls: ['./dashboard-menu.component.scss'],
+  templateUrl: './dashboard-menu.component.html'
 })
 export class DashboardMenuComponent implements OnInit {
   @Input() menuList: any = [];

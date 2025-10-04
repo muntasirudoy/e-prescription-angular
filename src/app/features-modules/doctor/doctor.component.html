@@ -1,21 +1,7 @@
 <div class="flex w-full h-full">
-  <div class="hidden lg:block lg:w-[25%]">
-    <app-dashboard-menu class="w-full" [menuList]="menuList"></app-dashboard-menu>
+  <app-dashboard-menu class=" w-fit" [menuList]="menuList"></app-dashboard-menu>
+  <div class="w-full">
+    <router-outlet></router-outlet>
   </div>
 
-  <mat-sidenav-container class="lg:hidden w-full">
-    <mat-sidenav class="min-w-[300px]" [opened]="visiblemenu" (openedChange)="sideBarOpenChange($event)" #sidenav
-      [mode]="'over'">
-      <app-dashboard-menu class="w-full" [menuList]="menuList"></app-dashboard-menu>
-    </mat-sidenav>
-
-    <mat-sidenav-content class="w-full custom-scrollbar">
-      <div class="w-full flex justify-between relative">
-        <div class="absolute right-0 w-full bg-[#f3f3fe] h-screen overflow-auto custom-scrollbar">
-          <!-- <app-dashboard-header></app-dashboard-header> -->
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
 </div>

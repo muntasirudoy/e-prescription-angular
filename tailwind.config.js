@@ -2,15 +2,15 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 const brandPalette = {
-  primary: "#f97316",
-  primaryAccent: "#fb923c",
-  highlight: "#fbbf24",
-  surface: "#fef6f4",
-  surfaceSoft: "#fde7e3",
-  surfaceStrong: "#f8d0d2",
-  neutral: "#374151",
-  neutralSoft: "#6B7280",
-  border: "#e0e0e0",
+  primary: "#06b48b",
+  primaryAccent: "#00c2a8",
+  highlight: "#4ade80",
+  surface: "#f2fbf7",
+  surfaceSoft: "#e3f6ef",
+  surfaceStrong: "#c3ebdc",
+  neutral: "#1f2a37",
+  neutralSoft: "#4b5563",
+  border: "#d6ebdf",
   white: "#ffffff",
 };
 
@@ -18,6 +18,7 @@ const brandGradients = {
   panel: `linear-gradient(180deg, ${brandPalette.surface} 0%, ${brandPalette.surfaceSoft} 45%, ${brandPalette.surfaceStrong} 100%)`,
   badge: `linear-gradient(135deg, ${brandPalette.primary} 0%, ${brandPalette.primaryAccent} 100%)`,
   highlight: `linear-gradient(135deg, ${brandPalette.highlight} 0%, ${brandPalette.primaryAccent} 100%)`,
+  glow: `radial-gradient(circle at 30% 20%, ${brandPalette.primary}33 0%, transparent 55%)`,
 };
 
 module.exports = {
@@ -55,8 +56,8 @@ module.exports = {
         "hero-pattern": "url(/assets/banner/bg-shape.webp)",
       },
       boxShadow: {
-        "brand-card": "0 32px 80px rgba(244, 163, 181, 0.45)",
-        "brand-soft": "0 16px 30px rgba(249, 191, 60, 0.25)",
+        "brand-card": "0 32px 80px rgba(6, 180, 139, 0.2)",
+        "brand-soft": "0 24px 40px rgba(6, 180, 139, 0.14)",
       },
       gridTemplateColumns: {
         "auto-fill-100": "repeat(auto-fill, minmax(160px, 1fr))",
@@ -91,7 +92,7 @@ module.exports = {
           "--gradient-brand-badge": brandGradients.badge,
           "--gradient-brand-highlight": brandGradients.highlight,
           "--gradient-brand-glow": brandGradients.glow,
-          "--shadow-brand-card": "0 32px 80px rgba(244, 163, 181, 0.45)",
+          "--shadow-brand-card": "0 32px 80px rgba(6, 180, 139, 0.2)",
         },
       });
     },
