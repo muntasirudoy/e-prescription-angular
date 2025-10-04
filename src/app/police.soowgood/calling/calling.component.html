@@ -1,0 +1,90 @@
+<div class="mx-auto overflow-hidden">
+    <div
+        class="flex flex-col items-center bg-gradient-to-br from-secondary/10 via-primary/10 to-secondary/20 p-8 relative">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-4 left-4 w-16 h-16 rounded-full border-4 border-green-300"></div>
+            <div class="absolute bottom-12 right-4 w-12 h-12 rounded-full border-4 border-green-300"></div>
+        </div>
+
+        <!-- Avatar container with pulsing effect -->
+        <div class="relative mb-6">
+            <div class="absolute inset-0 rounded-full bg-green-300 opacity-20 animate-ping"></div>
+            <div
+                class="w-28 h-28 rounded-full bg-white shadow-lg border-4 border-green-200 overflow-hidden flex items-center justify-center relative z-10">
+                <div class="absolute inset-0 bg-gradient-to-br from-green-100 to-green-50 opacity-50"></div>
+                <!-- SVG Icon (User) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-400" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Text content -->
+        <h3 class="text-2xl font-semibold text-slate-900 mb-2 text-center">Connecting your doctor...</h3>
+        <p class="text-sm text-gray-600 mb-5 text-center max-w-xs">
+            We're connecting you with the best available specialist
+        </p>
+
+        <!-- Security badge -->
+        <div class="flex items-center gap-1 mb-4 bg-white/70 px-3 py-1 rounded-full shadow-sm">
+            <!-- Shield Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-slate-900" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span class="text-xs text-slate-900 font-medium">Secure Connection</span>
+        </div>
+
+        <!-- Animated dots -->
+        <div class="flex items-center justify-center space-x-3 mb-3">
+            <div *ngFor="let dot of [1, 2, 3]" class="w-3 h-3 rounded-full transition-all duration-300" [ngClass]="{
+          'bg-primary scale-125': activeDot === dot,
+          'bg-secondary/20': activeDot !== dot
+        }">
+            </div>
+        </div>
+        <p class="text-slate-900 font-medium tracking-wide text-sm">Establishing Connection</p>
+    </div>
+
+    <!-- Call controls -->
+    <div class="flex items-center justify-center gap-6 p-6 bg-white">
+        <button (click)="cancelCall()" aria-label="Decline call"
+            class="rounded-full h-16 w-16 flex items-center justify-center shadow-lg border border-red-100 bg-gradient-to-br from-red-500 to-red-600 text-red-700 hover:from-red-100 hover:to-red-200 transition-all duration-300 group">
+            <svg width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M20 4.00002L16 8M16 4L20 7.99998" stroke="#ffffff" stroke-width="1.5"
+                        stroke-linecap="round"></path>
+                    <path opacity="0.5"
+                        d="M15.5562 14.5477L15.1007 15.0272C15.1007 15.0272 14.0181 16.167 11.0631 13.0559C8.10812 9.94484 9.1907 8.80507 9.1907 8.80507L9.47752 8.50311C10.1841 7.75924 10.2507 6.56497 9.63424 5.6931L8.37326 3.90961C7.61028 2.8305 6.13596 2.68795 5.26145 3.60864L3.69185 5.26114C3.25823 5.71766 2.96765 6.30945 3.00289 6.96594C3.09304 8.64546 3.81071 12.259 7.81536 16.4752C12.0621 20.9462 16.0468 21.1239 17.6763 20.9631C18.1917 20.9122 18.6399 20.6343 19.0011 20.254L20.4217 18.7584C21.3806 17.7489 21.1102 16.0182 19.8833 15.312L17.9728 14.2123C17.1672 13.7486 16.1858 13.8848 15.5562 14.5477Z"
+                        fill="#ffffff"></path>
+                </g>
+            </svg>
+        </button>
+
+        <button aria-label="Accept call"
+            class="rounded-full h-16 w-16 flex items-center justify-center shadow-lg bg-gradient-to-br from-amber-300 to-amber-500 text-white hover:from-amber-200 hover:to-amber-400 transition-all duration-300 group">
+            <svg fill="#ffffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 57.917 57.917" xml:space="preserve"
+                stroke="#ffffff">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <g>
+                        <path
+                            d="M20.674,49.982c1.746-1.918,2.82-4.458,2.82-7.25c0-5.953-4.843-10.796-10.796-10.796S1.903,36.778,1.903,42.731 s4.843,10.796,10.796,10.796c2.441,0,4.688-0.824,6.499-2.196l6.001,6.277c0.196,0.205,0.459,0.309,0.723,0.309 c0.249,0,0.497-0.092,0.691-0.277c0.398-0.382,0.413-1.015,0.031-1.414L20.674,49.982z M3.903,42.731 c0-4.85,3.946-8.796,8.796-8.796s8.796,3.946,8.796,8.796s-3.946,8.796-8.796,8.796S3.903,47.581,3.903,42.731z">
+                        </path>
+                        <path
+                            d="M55.436,40.904c-2.008-3.796-8.981-7.912-9.287-8.092c-0.896-0.51-1.831-0.78-2.706-0.78c-1.301,0-2.366,0.596-3.011,1.68 c-1.02,1.22-2.285,2.646-2.592,2.867c-2.376,1.612-4.237,1.429-6.294-0.629L20.059,24.464c-2.045-2.045-2.233-3.928-0.631-6.291 c0.224-0.31,1.649-1.575,2.87-2.596c0.778-0.463,1.312-1.15,1.545-1.995c0.307-1.106,0.071-2.463-0.652-3.732 c-0.173-0.296-4.29-7.269-8.085-9.276C14.397,0.198,13.599,0,12.799,0c-1.319,0-2.558,0.514-3.49,1.445L6.772,3.982 c-4.014,4.013-5.467,8.562-4.321,13.52c0.867,3.75,3.259,7.72,7.083,11.814c1.018-0.24,2.074-0.38,3.164-0.38 c7.607,0,13.796,6.188,13.796,13.796c0,1.101-0.143,2.167-0.388,3.193c5.502,5.311,10.752,8.011,15.614,8.011 c3.721,0,7.189-1.581,10.307-4.699l2.537-2.537C56.105,45.159,56.455,42.83,55.436,40.904z">
+                        </path>
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<!-- @switch (component) { @case ("password-change") {
+<app-reset-password [mobile]="'01874303205'"></app-reset-password>
+} @case ("delete-account") {
+<div>Blue</div>
+} } -->
+@if (component==='change-password') {
+<app-reset-password [mobile]="'01874303205'"></app-reset-password>
+}@else{
+<app-delete-account></app-delete-account>
+}

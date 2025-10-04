@@ -1,0 +1,35 @@
+<div
+  class="p-4 flex items-center gap-5 flex-wrap border-l-[4px] border-red-500 rounded-md"
+>
+  <div class="w-full">
+    <label
+      for="name"
+      class="text-[14px] text-gray-500 font-semibold font-poppinsLight"
+      >Pateint:</label
+    >
+    <p class="font-semibold text-[16px] text-gray-800 font-poppinsLight">
+      {{ appointmentInfo.patientName ?? "" }}
+    </p>
+  </div>
+  <div>
+    <label
+      for="name"
+      class="text-[14px] text-gray-500 font-semibold font-poppinsLight"
+      >Age:</label
+    >
+    <p class="font-semibold text-[16px] text-gray-800 font-poppinsLight">
+      {{ patientInfo.age ?? "" }} Yrs
+    </p>
+  </div>
+  <span> | </span>
+  <div>
+    <label
+      for="name"
+      class="text-[14px] text-gray-500 font-semibold font-poppinsLight"
+      >Gender:</label
+    >
+    <p class="font-semibold text-[16px] text-gray-800 font-poppinsLight">
+      {{ patientInfo.genderName ?? "" }}
+    </p>
+  </div>
+</div>

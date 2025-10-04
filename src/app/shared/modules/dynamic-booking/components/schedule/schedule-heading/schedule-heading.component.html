@@ -1,0 +1,22 @@
+<div class="flex justify-between max-w-[600px]">
+  <div class="gap-4">
+    <div class="col-span-4">
+      <h2 class="heading text-[20px] font-poppinsBold">
+        <span class="text-[15px]">{{
+          doctorData?.doctorDetails.doctorTitleName
+        }}</span>
+
+        {{ doctorData?.doctorDetails.fullName }}
+      </h2>
+      <p>{{ doctorData?.doctorDetails.areaOfExperties }}</p>
+    </div>
+  </div>
+  <div class="py-0 px-3 lg:min-w-[120px]">
+    <div class="leading-0">
+      <div class="stat-title">Total Fee</div>
+      <div class="text-slate-900 font-poppinsBold text-[26px]">
+        {{ totalFee ? totalFee : "00" }} tk.
+      </div>
+    </div>
+  </div>
+</div>

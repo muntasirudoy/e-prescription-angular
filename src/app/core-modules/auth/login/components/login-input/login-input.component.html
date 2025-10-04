@@ -1,0 +1,138 @@
+<form [formGroup]="loginForm" (submit)="sendOtp()" class="max-w-[450px] mx-auto">
+  <!-- otp section -->
+  @if (otp().showOtp && (selectedUserType =='Patient')) {
+  <div class="py-6 mx-auto w-fit relative">
+    @if (!otp().isLoading) {
+    <app-otp (onOtpChange)="onOtpChange($event)" />
+    }@else {
+    <div class="h-[100px] flex justify-center items-center left-0 w-full bg-white font-poppins text-[18px]">
+      Verifying your OTP...
+    </div>
+    }
+  </div>
+  }@else {
+  <svg (click)="backToPrevious()" class="absolute top-5 left-5 cursor-pointer" fill="#f4c1c8" height="34px" width="34px"
+    version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 472.615 472.615" xml:space="preserve">
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="SVGRepo_iconCarrier">
+      <g>
+        <g>
+          <path
+            d="M167.158,117.315l-0.001-77.375L0,193.619l167.157,153.679v-68.555c200.338,0.004,299.435,153.932,299.435,153.932 c3.951-19.967,6.023-40.609,6.023-61.736C472.615,196.295,341.8,117.315,167.158,117.315z">
+          </path>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <div class="flex flex-col space-y-5 py-8">
+    <label for="mobile">
+      <div class="flex justify-between items-center">
+        <p class="font-medium text-left text-slate-700 pb-2">Mobile Number</p>
+        @if (selectedUserType == 'Doctor') {
+        <P class="text-[12px]" (click)="goToForgotPassword()">Forgot Password</P>
+        }
+      </div>
+
+      <div class="form_input flex h-[40px] bg-white border-secondary-dark border-dashed" [ngClass]="{
+          'border-red-500':
+            loginForm.get('mobileNo')?.invalid &&
+            loginForm.get('mobileNo')?.touched
+        }">
+        <span matPrefix class="h-fit font-Roboto text-[14px] lg:text-[16px]">+88 &nbsp;</span>
+        <input autocomplete="off" matInput maxlength="11"
+          class="w-full bg-transparent outline-none border-none font-Roboto h-fit font-semibold text-[14px] lg:text-[16px]"
+          inputmode="numeric" formControlName="mobileNo" id="mobileNo" placeholder="018-000-00000" required />
+      </div>
+
+      <mat-error class="text-red-600" *ngIf="
+          loginForm.get('mobileNo')?.hasError('required') &&
+          loginForm.get('mobileNo')?.touched
+        ">
+        You must enter a valid mobile number.
+      </mat-error>
+      <mat-error class="text-red-500" *ngIf="
+          loginForm.get('mobileNo')?.hasError('pattern') &&
+          loginForm.get('mobileNo')?.touched
+        ">
+        Mobile number should have exactly 11 digits and follow the Bangladeshi
+        format.
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('mobileNo')?.hasError('customError')">
+        {{ loginForm.get("mobileNo")?.getError("customError") }}
+      </mat-error>
+    </label>
+
+    @if(selectedUserType=='Doctor') {
+    <label for="Password">
+      <p class="font-medium text-slate-700 pb-2">Password</p>
+      <div class="form_input flex justify-between bg-slate-100" [ngClass]="{
+          'border-red-500':
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+        }">
+        <input autocomplete="off" formControlName="password" [type]="passwordFieldType" name="password" id="password"
+          class="outline-none border-none w-full bg-transparent text-[14px] lg:text-[16px]"
+          placeholder="Password123@*" />
+        <span (click)="passwordVisibility('password')" class="cursor-pointer">
+          <i [class]="
+              passwordFieldType === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye'
+            "></i>
+        </span>
+      </div>
+      <div class="flex flex-col">
+        <mat-error *ngIf="
+            formSubmitted && loginForm.get('password')?.hasError('required')
+          ">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="
+            formSubmitted &&
+            loginForm.get('password')?.hasError('startsWithUppercase')
+          ">
+          Password must start with an uppercase letter.
+        </mat-error>
+        <mat-error *ngIf="
+            formSubmitted &&
+            loginForm.get('password')?.hasError('isAtLeast6Characters')
+          ">
+          Password must be at least 6 characters long.
+        </mat-error>
+        <mat-error *ngIf="
+            formSubmitted &&
+            loginForm.get('password')?.hasError('includesSpecialCharacter')
+          ">
+          Password must include a special character.
+        </mat-error>
+        <mat-error *ngIf="
+            formSubmitted &&
+            loginForm.get('password')?.hasError('includesNumber')
+          ">
+          Password must include a number.
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('customError')">
+          {{ loginForm.get("password")?.getError("customError") }}
+        </mat-error>
+      </div>
+    </label>
+    }
+    <button [disabled]="btnLoading || !loginForm.dirty || loginForm.invalid" type="submit"
+      class="form_btn disabled:bg-gray-500 disabled:select-none">
+      <div *ngIf="!btnLoading" class="flex items-center">
+        <span>Login</span>
+        <i class="fa-solid ml-2 fa-right-to-bracket"></i>
+      </div>
+      <span *ngIf="btnLoading" class="loading loading-dots loading-md"></span>
+    </button>
+  </div>
+  }
+
+  <div *ngIf="otp().otpError" class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 font-semibold font-Roboto"
+    role="alert">
+    <i class="fa-solid fa-circle-exclamation mr-2"></i>
+    {{ otp().otpError }}
+  </div>
+
+</form>

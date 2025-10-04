@@ -1,0 +1,105 @@
+<!-- <button (click)="drawer.toggle()">click</button> -->
+<mat-drawer-container class="absolute top-0 right-0" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="side">I'm a drawer</mat-drawer>
+  <mat-drawer-content>
+    <div class="doctor-dashboard_midcontent_container w-full">
+      <div class="flex items-center justify-left">
+        <div class="w-full relative pb-5 px-4">
+          <app-filter class="sticky sticky:top-26 mt-5" [filterInput]="filterInput" [filterForm]="filter"></app-filter>
+          <div class="container">
+            <div class="flex w-full justify-between">
+              <ol
+                class="flex w-full text-[14px] md:text-[16px] flex-wrap items-center rounded-md bg-blue-gray-50 bg-opacity-60 md:py-2">
+                <li
+                  class="flex cursor-pointer items-center font-sans text-sm font-normal leading-normal text-blue-gray-900 antialiased transition-colors duration-400 hover:text-slate-900">
+                  <a class="opacity-60" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                      </path>
+                    </svg>
+                  </a>
+                  Home
+                  <span
+                    class="pointer-events-none mx-2 select-none font-sans text-sm font-normal leading-normal text-blue-gray-500 antialiased">
+                    /
+                  </span>
+                </li>
+
+                <li
+                  class="flex cursor-pointer items-center font-sans text-sm font-normal leading-normal text-blue-gray-900 antialiased transition-colors duration-400 hover:text-pink-500">
+                  <a class="font-medium text-blue-gray-900 transition-colors hover:text-slate-900">
+                    search
+                  </a>
+                </li>
+              </ol>
+              <div class="w-[200px] block text-right">
+                @if (!totalCount) {
+                <p>
+                  Total <strong>{{ totalCount }}</strong>
+                  {{ totalCount > 1 ? "doctors" : "doctor" }} found.
+                </p>
+                <!-- <div class="flex justify-center items-center h-[500px] w-full">
+                  <div class="text-[18px] font-bold md:text-[24px]">
+                    No doctor found!
+                  </div>
+                </div> -->
+                }@else {
+                <p>
+                  Total <strong>{{ totalCount }}</strong>
+                  {{ totalCount > 1 ? "doctors" : "doctor" }} found.
+                </p>
+                }
+              </div>
+            </div>
+            @if (search) {
+            <p>Your are searching for : <strong> {{search}}</strong></p>
+            }
+            <div #doctorItem *ngIf="dataLoading" [ngClass]="
+                from == 'globalSearch'
+                  ? 'w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-7 py-5  flex-wrap  pb-[50px]'
+                  : 'w-full grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 gap-5  py-5  flex-wrap  pb-[50px]'
+              ">
+
+              <app-skeleton></app-skeleton>
+              <app-skeleton></app-skeleton>
+              <app-skeleton></app-skeleton>
+              <app-skeleton></app-skeleton>
+              <app-skeleton></app-skeleton>
+              <app-skeleton></app-skeleton>
+
+
+            </div>
+
+            <div *ngIf="!dataLoading" [ngClass]="
+                from == 'globalSearch'
+                  ? 'w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-7 py-5  flex-wrap  pb-[50px]'
+                  : 'w-full grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 gap-5  py-5  flex-wrap  pb-[50px]'
+              ">
+
+              <div *ngFor="let doctorDetails of doctorList" #doctorItem class="h-full">
+                <app-doctor-card [doctorDetails]="doctorDetails" class="max-w-[350px] min-w-[310px]" />
+              </div>
+            </div>
+
+            <div class="w-full flex justify-center">
+              <!-- <mat-paginator class="bg-primary/5 w-fit py-2 px-2.5 rounded-xl shadow-2xl shadow-secondary/10"
+                [length]="totalCount" [pageSize]="filterModel.pageSize" [pageIndex]="filterModel.pageNo"
+                aria-label="Select page" (page)="pageChanged($event)">
+              </mat-paginator> -->
+              <button [disabled]="dataLoading" (click)="onClickMore()" class="btn-secondary"
+                *ngIf=" doctorList.length !== totalCount">
+                {{dataLoading ? 'Loading...' : 'Load more doctors...'}}
+
+              </button>
+
+              <div *ngIf="!dataLoading && doctorList.length === totalCount" class="no-data">
+                <p>No more doctors are available.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

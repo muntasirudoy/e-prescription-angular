@@ -1,0 +1,15 @@
+<div class="flex flex-col items-center text-center">
+  <!-- <app-card-title /> -->
+  <div class="mt-6 grid w-full grid-cols-1 gap-6">
+    @if (sessionRole == 'patient' ) {
+    <app-booking-for-card
+      (click)="onSelectItem('isSelf')"
+      [forName]="'Book for Self'"
+    />
+    }
+    <app-booking-for-card
+      (click)="onSelectItem('isOther')"
+      [forName]="'Book Someone'"
+    />
+  </div>
+</div>

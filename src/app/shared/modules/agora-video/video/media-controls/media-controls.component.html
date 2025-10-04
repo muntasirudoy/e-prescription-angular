@@ -1,0 +1,47 @@
+<div class="w-full">
+  <div
+    class="bg-white/80 backdrop-blur-sm absolute border-[6px] md:border-[10px] border-slate-100 left-1/2 bottom-[100px] md:bottom-4 z-10 items-center -translate-x-1/2 rounded-full w-fit px-10 shadow-xl md:h-[70px] h-[50px] flex gap-8 md:gap-12 justify-center"
+  >
+    <!-- Microphone Toggle -->
+
+    <img
+      #micButton
+      (click)="handleMicToggle($event)"
+      [src]="isMicMuted ? '/assets/agora/mic-off.svg' : '/assets/agora/mic.svg'"
+      class="w-[28px] active:scale-95 xl:w-[32px] xl:h-[32px] h-[28px] cursor-pointer"
+      alt="Mic Toggle"
+    />
+
+    <!-- Video Toggle -->
+    <img
+      #videoButton
+      (click)="handleVideoToggle($event)"
+      [src]="
+        isVideoMuted
+          ? '/assets/agora/mute-video.svg'
+          : '/assets/agora/video.svg'
+      "
+      class="w-[28px] active:scale-95 xl:w-[32px] xl:h-[32px] h-[28px] cursor-pointer"
+      alt="Video Toggle"
+    />
+
+    <!-- Leave Call Button -->
+    <img
+      #leaveButton
+      (click)="handleLeaveChannel()"
+      src="/assets/agora/call.svg"
+      class="w-[28px] active:scale-95 xl:w-[32px] xl:h-[32px] h-[28px] cursor-pointer"
+      alt="Leave Call"
+    />
+    <!-- @if (useType=='doctor') {
+
+    <img
+      #completeButton
+      (click)="handleCompleteCall(aptCode)"
+      src="/assets/agora/check.svg"
+      class="w-[28px] active:scale-95 xl:w-[32px] xl:h-[32px] h-[28px] cursor-pointer"
+      alt="complete Call"
+    />
+    } -->
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<!-- <h1 class="text-[20px] font-bold text-gray-800 pb-3">Patient Info</h1> -->
+
+<!-- TODO : Patient age , gender others data should be added on the
+        appointment info and remove patient info -->
+
+<main id="" class="h-full md:h-screen">
+  <div class="grid grid-cols-12 bg-slate-100 h-full">
+    <!-- <div class="col-span-12 hidden md:block md:col-span-3 row-span-1 bg-white md:border-[1px] relative">
+      <div class="p-4 box-border h-[82px] bg-white">
+        <img routerLink="/" src="assets/auth/clr-logo.png"
+          class="max-w-[200px] drop-shadow-md active:scale-95 duration-200" alt="" />
+      </div>
+      <hr />
+
+      <app-prescription-patient [patientInfo]="patientInfo" [appointmentInfo]="appointmentInfo" />
+      <hr />
+      <div class="p-4 border-l-[4px] border-green-500 rounded-md">
+        <div>
+          <label for="name" class="text-[18px] text-gray-800 font-semibold font-poppinsLight">Previous History:</label>
+          <p class="font-normal text-[14px] text-gray-800 mt-1 font-poppinsLight">
+            N/A
+          </p>
+        </div>
+
+      </div>
+      <hr />
+
+      <div class="absolute bottom-0 w-full left-0 box-border">
+        <button (click)="goBack()"
+          class="bg-gray-200 text-gray-800 py-3 flex justify-center items-center gap-1 font-poppins w-full">
+          <svg fill="#000000" width="24px" height="24px" viewBox="-8.5 0 32 32" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <title>back</title>
+              <path d="M15.281 7.188v17.594l-15.281-8.781z"></path>
+            </g>
+          </svg>
+          Back to Appointments
+        </button>
+      </div>
+    </div> -->
+
+    <div [class]="
+        userType == 'doctor'
+          ? 'col-span-12 md:col-span-4 h-full relative'
+          : 'col-span-12 md:col-span-12 h-full relative'
+      ">
+      <div class="bg-white h-full w-full md:border-[1px] relative">
+        <div
+          class="w-full absolute md:p-4 p-3 box-border border-b-[1px] z-50 border-gray-300 bg-white flex justify-between items-center">
+          <div class="flex gap-5">
+            <div
+              class="md:w-[50px] font-Roboto w-[40px] font-semibold md:h-[50px] h-[40px] rounded-md bg-blue-100 text-blue-900 flex justify-center items-center">
+              {{ takeFirstLetter() }}
+            </div>
+            <div>
+              <h2 class="md:text-[18px] text-[16px] font-semibold text-slate-900 capitalize">
+                {{
+                userType !== "doctor"
+                ? appointmentInfo.doctorName
+                : appointmentInfo.patientName
+                }}
+              </h2>
+              <p class="text-[12px] text-gray-500 font-poppinsLight">
+                {{
+                userType == "patient"
+                ? appointmentInfo.doctorCode
+                : appointmentInfo.patientCode
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- @if (showBackBtn) {
+        <button (click)="handleBackToAppointments()">
+          Back To Appointmets
+        </button>
+        } -->
+        <app-join-modal *ngIf="isJoinModalVisible" (joinChannel)="handleJoinChannel()"></app-join-modal>
+        <div class="relative h-[calc(100vh)] max-w-[800px] mx-auto">
+          <app-remote-stream #remoteStreamsContainer></app-remote-stream>
+        </div>
+        <app-local-stream *ngIf="isLocalStreamVisible" (leaveChannel)="handleLeaveChannel()"></app-local-stream>
+      </div>
+    </div>
+
+    <div [class]="userType !== 'doctor' ? 'md:hidden' : ''"
+      class="col-span-12 md:col-span-8 box-border hidden md:block bg-white md:border-[1px] md:h-screen overflow-scroll custom-scrollbar">
+      <!-- <h1 class="text-[24px] font-poppins">Rx</h1> -->
+      <!-- <app-prescription-submit
+        [appointmentInfo]="appointmentInfo"
+        [patientInfo]="patientInfo"
+      /> -->
+      <app-prescribe></app-prescribe>
+    </div>
+  </div>
+
+  @if (userType=='doctor') {
+  <app-bottom-nav [patientPrescriptions]="newPrescriptionDetails" [appointmentInfo]="appointmentInfo"
+    [patientInfo]="patientInfo"></app-bottom-nav>
+  }
+</main>

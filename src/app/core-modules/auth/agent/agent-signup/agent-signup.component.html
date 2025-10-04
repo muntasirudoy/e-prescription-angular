@@ -1,0 +1,207 @@
+<div class="h-screen relative items-center flex bg-white">
+  <div class="hidden w-1/2 sticky bottom-0 self-end overflow-hidden lg:block">
+    <img ngSrc="/assets/auth/auth-signup.svg" width="300" height="300" alt="auth"
+      class="w-full h-full object-fit lg:max-w-[650px] 2xl:max-w-[80%]" />
+  </div>
+  <div class="relative max-h-screen overflow-auto custom-scrollbar lg:w-2/3">
+    <div class="relative w-full lg:max-w-[80%] mx-auto mt-10 lg:p-8 p-4 rounded-xl bg-white">
+      <img routerLink="/" src="assets/auth/clr-logo.png" class="w-[200px] mx-auto" alt="logo" />
+      <h1 class="text-2xl md:text-3xl text-center font-Roboto text-slate-900 md:mt-6">
+        Signup
+      </h1>
+      <p class="text-slate-500 mt-2 text-center">
+        To begin this journey, tell us what type of account you’d be opening.
+      </p>
+
+      <form [formGroup]="signupForm" class="mt-14">
+        <div class="flex flex-wrap">
+          <div class="w-full px-3 sm:w-1/3 mb-5">
+            <label for="agentOrganization">
+              <p class="font-medium text-slate-700 pb-2">Agent Master</p>
+
+              <select formControlName="organizationName" name="select" id="organizationName"
+                class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-3 text-base font-normal text-[14px] text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                (change)="loadAgentSupervisors($event)">
+                <option value="0" class="font-semibold text-gray-500">
+                  Select
+                </option>
+                <option *ngFor="let item of agenetMasterList" value="{{ item.id }}" class="font-semibold text-gray-500">
+                  {{ item.displayName }}
+                </option>
+              </select>
+              <div *ngIf="signupForm.get('organizationName')?.touched && signupForm.get('organizationName')?.value ==0"
+                class="text-red-500 text-sm mt-1">
+                Agent master is required.
+              </div>
+            </label>
+          </div>
+          <div class="w-full px-3 sm:w-1/3 mb-5">
+            <label for="agentOrganization">
+              <p class="font-medium text-slate-700 pb-2">Supervisor</p>
+
+              <select formControlName="agentSuperVisor" name="select" id="agentSuperVisor"
+                class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-3 text-base font-normal text-[14px] text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <option value="0" class="font-semibold text-gray-500">
+                  Select
+                </option>
+                <option *ngFor="let item of agentSupervisorList" value="{{ item.id }}"
+                  class="font-semibold text-gray-500">
+                  {{ item.displayName }}
+                </option>
+              </select>
+            </label>
+            <div *ngIf="signupForm.get('agentSuperVisor')?.touched && signupForm.get('agentSuperVisor')?.value ==0"
+              class="text-red-500 text-sm mt-1">
+              SuperVisor is required.
+            </div>
+          </div>
+
+          <div class="w-full px-3 sm:w-1/3 mb-5">
+            <label for="agentName">
+              <p class="font-medium text-slate-700 pb-2">Agent Name</p>
+              <input type="text" formControlName="fullName" id="agentName" class="form_input" placeholder="Name"
+                required />
+            </label>
+            <div *ngIf="signupForm.get('fullName')?.hasError('required') && signupForm.get('fullName')?.touched"
+              class="text-red-500 text-sm mt-1">
+              Agent Name is required
+            </div>
+          </div>
+
+          <div class="w-full px-3 sm:w-1/2 mb-5">
+            <label for="email">
+              <p class="font-medium text-slate-700 pb-2">Email</p>
+              <input type="email" formControlName="email" id="email" class="form_input"
+                placeholder="example@mail.com" />
+            </label>
+            <div *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched"
+              class="text-red-500 text-sm mt-1">
+              Email is required
+            </div>
+          </div>
+
+          <div class="w-full px-3 sm:w-1/2 mb-5">
+            <label for="mobile">
+              <p class="font-medium text-slate-700 pb-2">Mobile Number</p>
+              <div class="form_input flex h-[40px]">
+                <span matPrefix class="h-fit font-Roboto">+88 &nbsp;</span>
+                <div>
+                  <input PhoneNumberValidator matInput maxlength="11" class="w-full border-none outline-none h-fit"
+                    type="tel" formControlName="mobileNo" id="mobileNo" placeholder="018-000-00000" required
+                    inputmode="numeric" [class]="
+                  signupForm.get('mobileNo')?.invalid || signupForm.get('mobileNo')?.hasError('phoneTaken')
+                    ? 'border-red-600 border-[1px]'
+                    : ''
+                " />
+                </div>
+              </div>
+              <div class="mt-2">
+                <div *ngIf="signupForm.get('mobileNo')?.hasError('required') && signupForm.get('mobileNo')?.touched"
+                  class="text-red-500 text-sm mt-1">
+                  Mobile number is required
+                </div>
+                <div class="text-red-600" *ngIf="signupForm.get('mobileNo')?.hasError('phoneTaken')">
+                  This phone number is already taken.
+                </div>
+                <div class="text-green-700"
+                  *ngIf="signupForm.get('mobileNo')?.valid && signupForm.get('mobileNo')?.dirty">
+                  This phone number is available.
+                </div>
+                <div class="text-red-600" *ngIf="signupForm.get('mobileNo')?.pending">
+                  Checking availability...
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-3">
+              <p class="font-medium text-slate-700 pb-2">Password</p>
+              <div class="form_input flex justify-between">
+                <input formControlName="password" [type]="passwordFieldType" name="password" id="password"
+                  class="outline-none border-none w-full" placeholder="Password"
+                  (keydown.enter)="$event.preventDefault()" />
+                <button (click)="passwordVisibility('password')" class="cursor-pointer">
+                  <i [class]="
+                      passwordFieldType === 'password'
+                        ? 'fa fa-eye-slash'
+                        : 'fa fa-eye'
+                    "></i>
+                </button>
+              </div>
+            </div>
+            <div *ngIf="signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched"
+              class="text-red-500 text-sm mt-1">
+              Password is required
+            </div>
+            <div *ngIf="signupForm.get('password')?.hasError('pattern')" class="text-red-500 text-sm mt-1">
+              Password is pattern not matched (EX: Pass$555)
+            </div>
+            <div *ngIf="signupForm.get('password')?.errors?.['minlength'] && signupForm.get('password')?.touched"
+              class="text-red-500 text-sm mt-1">
+              Password must be at least 6 characters
+            </div>
+          </div>
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-3">
+              <p class="font-medium text-slate-700 pb-2">Confirm Password</p>
+              <div class="form_input flex justify-between">
+                <input [type]="confirmPasswordFieldType" autocomplete="off" formControlName="confirmPassword"
+                  name="confirmPassword" class="outline-none border-none w-full" placeholder="Confirm password"
+                  (keydown.enter)="$event.preventDefault()" />
+                <button (click)="passwordVisibility('confirmPassword')" class="cursor-pointer">
+                  <i [class]="
+                      confirmPasswordFieldType === 'password'
+                        ? 'fa fa-eye-slash'
+                        : 'fa fa-eye'
+                    "></i>
+                </button>
+              </div>
+
+              <div
+                *ngIf="signupForm.get('confirmPassword')?.errors?.['required'] && signupForm.get('confirmPassword')?.touched"
+                class="text-red-500 text-sm mt-1">
+                Confirm Password is required
+              </div>
+              <div *ngIf="signupForm.errors?.['passwordMismatch'] && signupForm.get('confirmPassword')?.touched"
+                class="text-red-500 text-sm mt-1">
+                Passwords do not match
+              </div>
+            </div>
+          </div>
+          <div class="w-full px-3 mb-5">
+            <label for="Address">
+              <p class="font-medium text-slate-700 pb-2">Address</p>
+              <textarea type="text" formControlName="address" id="address" class="form_input" placeholder="Address"
+                required rows="2">
+              </textarea>
+            </label>
+            <div *ngIf="signupForm.get('address')?.hasError('required') && signupForm.get('address')?.touched"
+              class="text-red-500 text-sm mt-1">
+              Address is required
+            </div>
+          </div>
+          <button class="form_btn" (click)="onSubmit()">
+            <div class="flex items-center">
+              <span>Signup</span>
+              <i class="fa-solid ml-2 fa-right-to-bracket"></i>
+            </div>
+            <span *ngIf="isLoading" class="loading loading-dots loading-md"></span>
+          </button>
+          <p class="text-center w-full mt-5">
+            Already have an account?
+            <a routerLink="/agent/login" class="text-slate-900 font-medium inline-flex space-x-1 items-center">
+              <span> Login </span><span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

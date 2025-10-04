@@ -1,0 +1,62 @@
+<aside
+  class="dashboard-sidebar relative flex h-screen flex-col overflow-hidden"
+  [class.dashboard-sidebar--collapsed]="collapsed"
+>
+  <span class="dashboard-sidebar__orb dashboard-sidebar__orb--primary"></span>
+  <span class="dashboard-sidebar__orb dashboard-sidebar__orb--accent"></span>
+
+  <header class="dashboard-sidebar__header">
+    <div class="dashboard-sidebar__brand">
+      <div class="dashboard-sidebar__glyph">SG</div>
+      <div class="full-only">
+        <p class="dashboard-sidebar__caption">Groups</p>
+        <h1 class="dashboard-sidebar__title">Patients</h1>
+      </div>
+    </div>
+    <button
+      class="dashboard-sidebar__toggle"
+      type="button"
+      [attr.aria-expanded]="!collapsed"
+      [attr.aria-label]="collapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+      (click)="toggleSidebar()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <section class="dashboard-sidebar__profile full-only">
+    <div class="dashboard-sidebar__profile-card">
+      <app-dashboard-profilecard></app-dashboard-profilecard>
+    </div>
+  </section>
+
+  <section class="dashboard-sidebar__nav">
+    <p class="dashboard-sidebar__section-title full-only">Navigation</p>
+    <ul class="dashboard-sidebar__menu">
+      @for (item of menuList; track $index) {
+      <li>
+        <app-menu-item
+          [href]="item.route"
+          [iconSvg]="item.icon"
+          [label]="item.menuName"
+          [active]="isActive(item.route)"
+          [count]="item.count"
+          [collapsed]="collapsed"
+        />
+      </li>
+      }
+    </ul>
+  </section>
+
+  <footer class="dashboard-sidebar__footer full-only">
+    <div class="dashboard-sidebar__support-card">
+      <div>
+        <p class="dashboard-sidebar__support-title">Need help?</p>
+        <span class="dashboard-sidebar__support-sub">Our care crew is online 24/7</span>
+      </div>
+      <button type="button" class="dashboard-sidebar__support-action">Chat</button>
+    </div>
+  </footer>
+</aside>
