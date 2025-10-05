@@ -1,140 +1,79 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", "GTM-5L4HBZQF");
-  </script>
-
-
-
   <meta charset="utf-8" />
   <title>
-    Prescriba | Online health care and telemedicine service in Bangladesh.
+    Prescriba | Online health care service in Bangladesh.
   </title>
   <base href="/" />
-  <meta name="google-site-verification" content="ZUKMpASvb5zwKk_g3sKw7uIUzo7Ezx0p7xGzIB7lQMs" />
+
   <meta name="description"
-    content="Prescriba is more than just a healthcare platform; it’s a testament to the enduring spirit of our founder and the unwavering dedication to the welfare of the people of Bangladesh. " />
+    content="Prescriba is more than just a healthcare platform; it's a testament to the enduring spirit of our founder and the unwavering dedication to the welfare of the people of Bangladesh." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-  <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1026004322729404');
-    fbq('track', 'PageView');
-  </script>
 
   <style>
-    html,
     body {
-      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fb;
+      color: #3f4c6b;
     }
 
-    .body-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Preloader wrapper */
     .preloader {
+      position: fixed;
+      inset: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background-color: #ffffff;
-      align-items: center;
+      gap: 1.25rem;
+      background-color: #f5f7fb;
+      z-index: 9999;
     }
 
-    .preloader img {
-      width: 100px;
-      height: 100px;
-      animation: flip 2s infinite;
+    .spinner {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 0.35rem solid rgba(33, 150, 243, 0.15);
+      border-top-color: #21f3a6;
+      animation: spin 0.9s linear infinite;
     }
 
-    /* Flip Animation */
-    @keyframes flip {
-
-      0%,
-      100% {
-        transform: rotateY(0);
-      }
-
-      50% {
-        transform: rotateY(180deg);
-      }
-    }
-
-    /* Loading text */
     .loading-text {
-      margin-top: 20px;
-      font-family: Arial, sans-serif;
-      font-size: 1.2rem;
-      color: #32bced;
-      letter-spacing: 2px;
-      animation: fade 1.5s infinite;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3f4c6b;
+      font-weight: 600;
     }
 
-    /* Fading animation for text */
-    @keyframes fade {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.5;
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
       }
     }
   </style>
+  <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script> -->
+
 </head>
 
 <body class="relative">
   <app-root>
     <div class="preloader">
-      <!-- Your updated SVG logo -->
-      <img src="assets/sg-icon.svg" alt="icon" />
+      <div class="spinner"></div>
       <div class="loading-text">Loading...</div>
     </div>
   </app-root>
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L4HBZQF" height="0" width="0"
-      style="display: none; visibility: hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- facebook -->
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1026004322729404&ev=PageView&noscript=1" /></noscript>
 </body>
 
 </html>
+
