@@ -1,9 +1,14 @@
-import { Component, Input, OnInit, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItemComponent } from './menu-item/menu-item.component';
 
 @Component({
   selector: 'app-dashboard-menu',
-  templateUrl: './dashboard-menu.component.html'
+  templateUrl: './dashboard-menu.component.html',
+  standalone: true,
+  imports: [CommonModule, FormsModule, MenuItemComponent],
 })
 export class DashboardMenuComponent implements OnInit {
   @Input() menuList: any = [];

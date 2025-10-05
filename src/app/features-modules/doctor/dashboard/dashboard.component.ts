@@ -12,11 +12,17 @@ import { DashboardService } from './../../../proxy/services/dashboard.service';
 import { DoctorScheduleService } from './../../../proxy/services/doctor-schedule.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { UserinfoStateService } from 'src/app/shared/services/states/userinfo-state.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { WelcomeHeaderComponent } from './welcome-header/welcome-header.component';
+import { WarrningComponent } from './warrning/warrning.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  standalone: true,
+  imports: [FormsModule, CommonModule, WelcomeHeaderComponent],
 })
 export class DashboardComponent implements OnInit {
   private UserService = inject(UserinfoStateService);

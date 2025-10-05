@@ -30,7 +30,6 @@ import {
   DegreeService,
   DoctorProfileService,
   DocumentsAttachmentService,
-  PatientProfileService,
   SpecialityService,
   SpecializationService,
 } from 'src/app/proxy/services';
@@ -201,7 +200,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private doctorProfileService: DoctorProfileService,
-    private patientProfileService: PatientProfileService,
+
     private _router: Router,
     private normalAuth: AuthService,
     private doctorSpeciality: SpecialityService,
@@ -637,8 +636,6 @@ export class SignupComponent implements OnInit {
             if (res.is_success) {
               if (this.userType === 'Doctor') {
                 this.handleDoctorProfile(res.results);
-              } else if (this.userType === 'Patient') {
-                this.handlePatientProfile(res.results);
               }
             }
             if (!res.is_success) {
@@ -784,60 +781,6 @@ export class SignupComponent implements OnInit {
 
       this.stepBack1 = false;
     }
-  }
-
-  private handlePatientProfile(res: UserSignUpResultDto) {
-    const { age, fullName, bloodGroup, gender } = this.patientForm.value;
-    console.log({
-      age,
-      fullName,
-      bloodGroup,
-      gender,
-      mobileNo: this.mobile,
-      userId: res.userId,
-    });
-
-    this.patientProfileService
-      .create({
-        age,
-        fullName,
-        bloodGroup,
-        gender,
-        mobileNo: this.mobile,
-        userId: res.userId,
-      })
-      .subscribe((patientDto: PatientProfileDto) => {
-        this.otpLoader = false;
-        // const saveLocalStorage = {
-        //   fullName: patientDto.fullName,
-        //   email: patientDto.email,
-        //   mobileNo: patientDto.mobileNo,
-        //   userId: res.userId,
-        //   id: patientDto.id,
-        //   userType: this.userType.toLowerCase(),
-        // };
-        //const navigate = `${this.formGroup?.value.userTypeName}/profile-settings`;
-        // this._router
-        //   .navigate([navigate.toLowerCase()], {
-        //     state: { data: res },
-        //   })
-        //   .then(() => {
-        // this.normalAuth.setAuthInfoInLocalStorage(saveLocalStorage);
-        this.normalAuth.signOut();
-        this.isLoading = false;
-        this._router
-          .navigate(['/login'], {
-            state: { data: res }, // Pass the 'res' object as 'data' in the state object
-          })
-          .then((r) =>
-            this.tosterService.customToast(
-              'Patient Registration Successfull. Now login.',
-              'success'
-            )
-          );
-        this.cdRef.detectChanges();
-        // });
-      });
   }
 
   handleComponent(event: boolean) {

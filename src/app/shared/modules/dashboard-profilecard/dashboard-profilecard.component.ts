@@ -1,15 +1,17 @@
-import { TosterService } from 'src/app/shared/services/toster.service';
-import { DoctorProfileService } from './../../../proxy/services/doctor-profile.service';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { UserinfoStateService } from '../../services/states/userinfo-state.service';
+import { TosterService } from 'src/app/shared/services/toster.service';
 import { AvaterServiceService } from '../../services/avater-service.service';
-import { LoaderService } from '../../services/loader.service';
+import { UserinfoStateService } from '../../services/states/userinfo-state.service';
+import { DoctorProfileService } from './../../../proxy/services/doctor-profile.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-profilecard',
   templateUrl: './dashboard-profilecard.component.html',
   styleUrls: ['./dashboard-profilecard.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class DashboardProfilecardComponent implements OnInit {
   userInfo: any;
@@ -19,37 +21,32 @@ export class DashboardProfilecardComponent implements OnInit {
   profilePic: string = '';
   profileTile: any;
   profileName: any;
-  isProfileLoad: boolean= true;
-  isProfilePicLoad:boolean = true
+  isProfileLoad: boolean = true;
+  isProfilePicLoad: boolean = true;
   constructor(
     private UserinfoStateService: UserinfoStateService,
     private AuthService: AuthService,
     private DoctorProfileService: DoctorProfileService,
     private profilePicService: AvaterServiceService,
-    private TosterService: TosterService,
+    private TosterService: TosterService
   ) {}
   ngOnInit() {
-
     this.authInfo = this.AuthService.authInfo();
 
     if (this.authInfo.userType == 'doctor') {
       this.profileTile = 'Doctor';
-    }
-    else if (this.authInfo.userType == 'patient') {
+    } else if (this.authInfo.userType == 'patient') {
       this.profileTile = 'Patient';
-    }
-    else {
+    } else {
       this.profileTile = 'Agent';
-    }   
-     this.isProfileLoad = true
-      this.UserinfoStateService.getData().subscribe(
-          (data) => {
-            this.userInfo = data;
-            this.status = data.isOnline;
-              this.getProfilePic();
-              this.isProfileLoad = false
-          });
-    
+    }
+    this.isProfileLoad = true;
+    this.UserinfoStateService.getData().subscribe((data) => {
+      this.userInfo = data;
+      this.status = data.isOnline;
+      this.getProfilePic();
+      this.isProfileLoad = false;
+    });
   }
 
   onChangeStatus() {
@@ -79,9 +76,9 @@ export class DashboardProfilecardComponent implements OnInit {
         : this.authInfo.userType === 'agent'
         ? 'Agent'
         : '';
-    if(type == ''){
-      console.log("usertype not found");   
-      return
+    if (type == '') {
+      console.log('usertype not found');
+      return;
     }
 
     this.profilePicService
@@ -92,7 +89,10 @@ export class DashboardProfilecardComponent implements OnInit {
         // this.isLoading = false;
       })
       .catch((err) => {
-        this.TosterService.customToast('Error getting profile picture', 'error');
+        this.TosterService.customToast(
+          'Error getting profile picture',
+          'error'
+        );
         // this.isLoading = false;
       });
   }

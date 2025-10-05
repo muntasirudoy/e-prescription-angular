@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Route, RouterModule } from '@angular/router';
-import { DashboardMenuModule } from 'src/app/shared/modules/dashboard-menu/dashboard-menu.module';
 import { DoctorComponent } from './doctor.component';
 import { DoctorsPrescriptionsComponent } from './doctors-prescriptions/doctors-prescriptions.component';
 import { PrescribeComponent } from './prescribe/prescribe.component';
 import { isAuth } from 'src/app/auth-gurd/auth.service';
+import { DashboardMenuComponent } from 'src/app/shared/modules/dashboard-menu/dashboard-menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Route[] = [
   {
@@ -21,16 +22,15 @@ const routes: Route[] = [
       },
       {
         path: 'dashboard',
-        canActivate: [isAuth],
-        loadChildren: () =>
-          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+        // canActivate: [isAuth],
+        component: DashboardComponent,
       },
 
       // {
       //   path: 'patients',
       //   loadChildren: () =>
-      //     import('./my-patients/my-patients.module').then(
-      //       (m) => m.MyPatientsModule
+      //     import('./my-patients/my-patients.component').then(
+      //       (m) => m.MyPatientsComponent
       //     ),
       // },
       // {
@@ -75,7 +75,7 @@ const routes: Route[] = [
   declarations: [DoctorComponent],
   imports: [
     CommonModule,
-    DashboardMenuModule,
+    DashboardMenuComponent,
     MatSidenavModule,
     RouterModule.forChild(routes),
     DoctorsPrescriptionsComponent,

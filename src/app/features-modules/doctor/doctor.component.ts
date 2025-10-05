@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { MenuService } from 'src/app/shared/services/menu.service';
 import { UserinfoStateService } from 'src/app/shared/services/states/userinfo-state.service';
 
 @Component({
@@ -84,13 +83,9 @@ export class DoctorComponent {
         </svg>`),
     },
   ];
-  visiblemenu!: boolean;
-  sidenavOpenSignal: any;
-  eventState = false;
   constructor(
     private NormalAuth: AuthService,
-    private UserinfoStateService: UserinfoStateService,
-    private menuService: MenuService
+    private UserinfoStateService: UserinfoStateService
   ) {}
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -98,15 +93,6 @@ export class DoctorComponent {
     if (user.id) {
       this.UserinfoStateService.getProfileInfo(user.id, user.userType);
     }
-    // this.sidenavOpenSignal = this.menuService.sidenavOpenSignal;
-    this.menuService.menuVisibility$.subscribe((res) => {
-      this.visiblemenu = res;
-    });
   }
 
-  sideBarOpenChange(state: any) {
-    if (!state) {
-      this.menuService.visible(false);
-    }
-  }
 }

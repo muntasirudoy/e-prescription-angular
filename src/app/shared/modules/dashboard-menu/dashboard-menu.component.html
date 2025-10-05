@@ -18,12 +18,14 @@
       (click)="toggleSidebar()" [attr.aria-expanded]="!collapsed"
       [attr.aria-label]="collapsed ? 'Expand navigation' : 'Collapse navigation'">
       <ng-container *ngIf="collapsed; else expandedIcon">
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 6l6 6-6 6"></path>
         </svg>
       </ng-container>
       <ng-template #expandedIcon>
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M14 6l-6 6 6 6"></path>
         </svg>
       </ng-template>
