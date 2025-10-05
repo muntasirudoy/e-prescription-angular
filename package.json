@@ -42,7 +42,6 @@
     "ng-otp-input": "^1.9.2",
     "ngx-extended-pdf-viewer": "^23.0.0",
     "ngx-facebook-messenger": "^1.2.0",
-    "ngx-infinite-scroll": "^19.0.0",
     "ngx-mat-timepicker": "^19.0.0",
     "rxjs": "~7.8.0",
     "subsink": "^1.0.2",
@@ -81,4 +80,3 @@
     "util": false
   }
 }
-
