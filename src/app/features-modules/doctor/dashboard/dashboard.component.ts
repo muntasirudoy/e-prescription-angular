@@ -16,13 +16,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { WelcomeHeaderComponent } from './welcome-header/welcome-header.component';
 import { WarrningComponent } from './warrning/warrning.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, WelcomeHeaderComponent],
+  imports: [FormsModule, CommonModule, WelcomeHeaderComponent, RouterModule],
 })
 export class DashboardComponent implements OnInit {
   private UserService = inject(UserinfoStateService);
